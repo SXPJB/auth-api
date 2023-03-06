@@ -14,7 +14,7 @@ import {Person} from "./Person";
 export class User extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number
-    @ManyToOne(() => Person, person => person.id)
+    @ManyToOne(() => Person, person => person.id, {eager: true})
     @JoinColumn({referencedColumnName: "id", name: "id_person"})
     person: Person
     @Column()

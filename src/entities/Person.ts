@@ -20,7 +20,7 @@ export class Person extends BaseEntity {
     lastName: string
     @Column()
     email: string
-    @ManyToOne(() => Catalog, catalog => catalog.id, {cascade: true})
+    @ManyToOne(() => Catalog, catalog => catalog.id, {cascade: true, eager: true})
     @JoinColumn({referencedColumnName: "id", name: "id_gender"})
     gender: Catalog
     @Column()

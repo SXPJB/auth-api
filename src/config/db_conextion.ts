@@ -5,15 +5,15 @@ import {Catalog} from "../entities/Catalog";
 import {User} from "../entities/User";
 
 export const DatabaseConfig = new DataSource({
-    type: 'mysql',
-    host: DB_HOST,
-    port: DB_PORT,
-    username: DB_USER,
-    password: DB_PASSWORD,
     database: DB_NAME,
-    synchronize: false,
-    logging: true,
     entities: [Catalog, Person, User],
-    subscribers: [],
+    host: DB_HOST,
+    logging: true,
     migrations: [],
+    password: DB_PASSWORD,
+    port: DB_PORT,
+    subscribers: [],
+    synchronize: false,
+    type: 'mysql',
+    username: DB_USER,
 })

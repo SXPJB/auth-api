@@ -26,7 +26,7 @@ export const sendEmail = async (user: User) => {
                    <p>Or copy and paste the following code in the confirmation code field,
                     the code have expriation 24 hours</p>`,
         });
-        console.log("Message sent: %s", info.messageId);
+        console.info("Message sent: %s", info.messageId);
     } catch (e) {
         throw new Error("Error sending email")
     }

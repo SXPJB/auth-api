@@ -1,7 +1,41 @@
 import * as bcrypt from 'bcrypt';
+import * as jwt from 'jsonwebtoken';
 import {User} from "../entities/User";
 import {sendEmail} from "./mail.service";
+import {TOKEN_SECRET} from "../constants/constants";
+import {encryptPassword, generateConfirmationCode} from "../constants/utils";
 
+/**
+ * This services is responsible for authenticating the user creating a JWT token with the user information
+ * @param username: string
+ * @param password: string
+ * **/
+export const login = async (username: string, password: string) => {
+    try {
+        const user:User | null = await User.findOne({where: {username: username}})
+        if (!user) {
+            throw new Error("Bad credentials")
+        }
+        if (!user.isConfirmed) {
+            throw new Error("User not confirmed")
+        }
+        const isPasswordValid = await bcrypt.compare( password, user.password)
+        if (!isPasswordValid) {
+            throw new Error("Bad credentials")
+        }
+        // Create a JWT token with the user information and the secret key with expiration time of 1 hour
+        const token = jwt.sign({name: user.username, id: user.id}, TOKEN_SECRET, {expiresIn: '1h'})
+        user.token = token
+        return await user.save()
+    } catch (e) {
+        throw new Error("Error logging in")
+    }
+}
+
+/**
+ * This service is responsible for registering a new user and verifying if the user is confirmed
+ * @param newUser: User
+ * **/
 export const registerUser = async (newUser: User) => {
     try {
         const user: User = await User.create({
@@ -26,13 +60,15 @@ export const registerUser = async (newUser: User) => {
 
 /**
  * Verify if the user is confirmed using the confirmation code
+ * @param userId: number
+ * @param confirmationCode: string
  * **/
-export const verifyUser = async (userId:number, confirmationCode:string) => {
+export const verifyUser = async (userId: number, confirmationCode: string) => {
     try {
 
-        const user:User | null = await User.findOneBy({id: userId})
+        const user: User | null = await User.findOneBy({id: userId})
 
-        if(!user) {
+        if (!user) {
             throw new Error("User not found")
         }
 
@@ -54,8 +90,9 @@ export const verifyUser = async (userId:number, confirmationCode:string) => {
 
 /**
  * Send email to user with confirmation code
+ * @param user: User
  * **/
-export const sendConfirmationEmail = async (user: User) => {
+const sendConfirmationEmail = async (user: User) => {
     try {
         user.confirmationCode = generateConfirmationCode()
         // The user will have 24 hours to confirm his email
@@ -65,18 +102,4 @@ export const sendConfirmationEmail = async (user: User) => {
     } catch (e) {
         throw new Error("Error sending email")
     }
-}
-
-/**
- * Generate confirmation code
- */
-export const generateConfirmationCode = () => {
-    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-}
-
-const encryptPassword = async (password: string) => {
-    const saltRounds = 10;
-    const salt = await bcrypt.genSalt(saltRounds);
-    const hashedPassword = await bcrypt.hash(password, salt);
-    return hashedPassword
 }
