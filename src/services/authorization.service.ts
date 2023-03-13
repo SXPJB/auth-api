@@ -6,7 +6,7 @@ import {TOKEN_SECRET} from "../constants/constants";
 import {encryptPassword, generateConfirmationCode} from "../constants/utils";
 
 /**
- * This services is responsible for authenticating the user creating a JWT token with the user information
+ * This service is responsible for authenticating the user creating a JWT token with the user information
  * @param username: string
  * @param password: string
  * **/

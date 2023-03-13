@@ -1,8 +1,14 @@
 import {Request, Response} from 'express';
-import {registerUser, verifyUser,login} from "../services/authorization.service";
-import {User} from "../entities/User";
+import {registerUser, verifyUser,login} from "../../services/authorization.service";
+import {User} from "../../entities/User";
 
 
+/**
+ * This an endpoint for register a user in the system
+ * @param {Request} req - The request object {username, password} in the body
+ * @param {Response} res - The response object
+ * @returns {Promise<Response>} - The response object with the user registered
+ * **/
 export const loginSystem = async (req: Request, res: Response) => {
     try {
         const {username, password} = req.body
@@ -28,6 +34,12 @@ export const loginSystem = async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * The register endpoint is used to register a user in the system and send the confirmation email
+ * @param {Request} req - The request object {User} in the body
+ * @param {Response} res - The response object
+ * @returns {Promise<Response>} - The response object with the user registered
+ * **/
 export const register = async (req: Request, res: Response) => {
     let user: User | null = null
     try {
@@ -46,6 +58,12 @@ export const register = async (req: Request, res: Response) => {
     })
 }
 
+/**
+ * To verify endpoint is used to verify a user in the system with the confirmation code sent by email
+ * @param {Request} req - The request object {userId, confirmationCode} in the body
+ * @param {Response} res - The response object
+ * @returns {Promise<Response>} - The response object with the user verified
+ * **/
 export const verify = async (req: Request, res: Response) => {
     try {
         const {userId, confirmationCode} = req.params

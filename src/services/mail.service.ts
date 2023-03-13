@@ -5,6 +5,9 @@ import {EMAIL, EMAIL_PASSWORD} from "../constants/constants";
 /**
  * Send email to user with confirmation code
  * with amazing content and html template :)
+ * TODO: Add html template to email
+ * @param user
+ * @returns {Promise<void>}
  * **/
 export const sendEmail = async (user: User) => {
     try {

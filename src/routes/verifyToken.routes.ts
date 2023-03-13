@@ -2,7 +2,14 @@ import * as jwt from 'jsonwebtoken';
 import {Request, Response,NextFunction} from "express";
 import {TOKEN_SECRET} from "../constants/constants";
 
-//Middleware to verify the token
+/**
+ * This function is used to verify the token provided by the user in the request header and
+ * if the token is valid, it will allow the user to access the protected routes
+ * @function verifyToken
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @returns {Response} - The response object
+ * **/
 const verifyToken = (req:Request, res:Response, next:NextFunction) => {
     const token = req.header('auth-token');
     if (!token) return res.status(401).send('Access denied');
