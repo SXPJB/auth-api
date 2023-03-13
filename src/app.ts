@@ -1,10 +1,8 @@
 import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
-import SwaggerUI from 'swagger-ui-express'
 import authorizationRoutes from "./routes/authorization.routes"
 import healthcheck from "./endpoints/health/healthcheck.endpoint";
-import {swaggerDocument} from "./config/docs/swagger";
 
 /**
  * Application configuration for routes and middlewares
@@ -25,7 +23,6 @@ app.use(express.json())
 
 //routes
 app.use('/auth',authorizationRoutes)
-app.use('/docs',SwaggerUI.serve,SwaggerUI.setup(swaggerDocument))
 app.use(healthcheck)
 
 
