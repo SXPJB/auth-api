@@ -8,9 +8,9 @@ import {Request, Response} from 'express';
  * **/
 const healthcheck = async (req: Request, res: Response) => {
     try {
-        res.status(200).send({status: 'OK'});
+        return res.status(200).send({status: 'OK'});
     } catch (e) {
-        res.status(500).send({status: 'ERROR'});
+        return res.status(500).send({status: 'ERROR'});
     }
 }
 
