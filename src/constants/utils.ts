@@ -6,10 +6,8 @@ import * as bcrypt from "bcrypt";
  * @returns {Promise<string>} - The encrypted password
  * **/
 export const encryptPassword = async (password: string) => {
-    const saltRounds = 10;
-    const salt = await bcrypt.genSalt(saltRounds);
-    const hashedPassword = await bcrypt.hash(password, salt);
-    return hashedPassword
+    const salt = await bcrypt.genSalt(10);
+    return await bcrypt.hash(password, salt);
 }
 
 /**
