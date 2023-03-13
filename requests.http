@@ -1,0 +1,28 @@
+##
+GET http://localhost:8080/healthcheck
+
+### Register new user
+POST http://localhost:8080/auth/register
+Content-Type: application/json'
+
+{
+    "person": {
+        "firstName": "emmanuel",
+        "lastName": "Hernandez",
+        "email": "emmanuel.hernandezramirez@gmail.com",
+        "gender": {
+            "id": 1
+        }
+    },
+    "username": "asdasd",
+    "password": "12345"
+}
+
+### Login
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username": "asdasd",
+  "password": "12345"
+}
