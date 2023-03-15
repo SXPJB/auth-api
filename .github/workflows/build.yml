@@ -24,16 +24,16 @@ jobs:
         - run: npm ci
         - uses: actions/upload-artifact@v3.1.1
           with:
-            name: pre-build
-            path: pre-build
+            name: artifact
+            path: artifact
     test:
       needs: [ pre-build ]
       runs-on: ubuntu-latest
       steps:
         - uses: actions/download-artifact@v3.0.1
           with:
-            name: pre-build
-            path: pre-build
+            name: artifact
+            path: artifact
         - name: Use Node.js 16.16.0
           uses: actions/setup-node@v3
           with:
@@ -46,8 +46,8 @@ jobs:
       steps:
         - uses: actions/upload-artifact@v3.1.1
           with:
-            name: pre-build
-            path: pre-build
+            name: artifact
+            path: artifact
         - name: Use Node.js 16.16.0
           uses: actions/setup-node@v3
           with:
