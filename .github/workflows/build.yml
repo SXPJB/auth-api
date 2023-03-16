@@ -22,7 +22,16 @@ jobs:
             node-version: 16.16.0
             cache: 'npm'
         - run: npm ci
-        - run: npm run test
+        - run: npm run test -- --coverage
+        - name: Coverage report
+          uses: eleboys/test-coverage-report-action@v1.0.2
+          id: report
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            path: coverage/coverage-final.json
+            title: Test Coverage
+        - name: Print the output summary
+          run: echo "Report coverage json ${{ steps.report.outputs.summary }}"
     build:
       needs: [ test ]
       runs-on: ubuntu-latest
