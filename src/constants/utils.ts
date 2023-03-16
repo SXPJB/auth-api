@@ -1,4 +1,5 @@
 import * as bcrypt from "bcrypt";
+import {User} from "../entities/User";
 
 /**
  * This function encrypts the password using bcrypt library
