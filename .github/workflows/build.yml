@@ -23,8 +23,6 @@ jobs:
             cache: 'npm'
         - run: npm ci
         - run: npm run test:coverage
-        - name: Print the Total Coverage
-          uses: ArtiomTr/jest-coverage-report-action@v2
     build:
       needs: [ test ]
       runs-on: ubuntu-latest
