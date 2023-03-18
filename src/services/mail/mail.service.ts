@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
-import {User} from "../entities/User";
-import {EMAIL, EMAIL_PASSWORD} from "../constants/constants";
+import {User} from "../../entities/User";
+import {EMAIL, EMAIL_PASSWORD} from "../../constants/constants";
 
 /**
  * Send email to user with confirmation code

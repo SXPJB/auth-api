@@ -1,6 +1,6 @@
 import sinon from "sinon";
 import {register} from "../authorization.endpoint";
-import * as authorizationService from "../../../services/authorization.service";
+import * as authorizationService from "../../../services/authorization/authorization.service";
 import {IUser} from "../../../types";
 
 /**

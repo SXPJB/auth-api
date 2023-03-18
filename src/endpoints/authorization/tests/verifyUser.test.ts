@@ -1,5 +1,5 @@
 import sinon from "sinon";
-import * as authorizationService from "../../../services/authorization.service";
+import * as authorizationService from "../../../services/authorization/authorization.service";
 import {verify} from "../authorization.endpoint";
 
 /**

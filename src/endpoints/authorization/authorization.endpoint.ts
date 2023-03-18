@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {registerUser, verifyUser,login} from "../../services/authorization.service";
+import {registerUser, verifyUser,login} from "../../services/authorization/authorization.service";
 import {IUser} from "../../types";
 
 
