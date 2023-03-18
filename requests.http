@@ -3,7 +3,7 @@ GET http://localhost:8080/healthcheck
 
 ### Register new user
 POST http://localhost:8080/auth/register
-Content-Type: application/json'
+Content-Type: application/json
 
 {
     "person": {

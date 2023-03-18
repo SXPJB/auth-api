@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
-import {registerUser, verifyUser,login} from "../../services/authorization.service";
-import {User} from "../../entities/User";
+import {registerUser, verifyUser,login} from "../../services/authorization/authorization.service";
+import {IUser} from "../../types";
 
 
 /**
@@ -41,11 +41,11 @@ export const loginSystem = async (req: Request, res: Response) => {
  * @returns {Promise<Response>} - The response object with the user registered
  * **/
 export const register = async (req: Request, res: Response) => {
-    let user: User | null = null
+    let user: IUser | null = null
     try {
         user = await registerUser(req.body)
     } catch (e) {
-        return res.json({
+        return res.status(500).json({
             message: 'User not created',
             data: e,
             status: 500
@@ -76,7 +76,7 @@ export const verify = async (req: Request, res: Response) => {
         }
         await verifyUser(parseInt(userId),confirmationCode)
     } catch (e) {
-        return res.json({
+        return res.status(500).json({
             message: 'User not verified',
             data: e,
             status: 500
