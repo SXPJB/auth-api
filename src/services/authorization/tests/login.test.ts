@@ -67,7 +67,7 @@ describe("Login Service", () => {
             username,
             password: encryptedPassword,
             isConfirmed: true,
-            token: ""
+            token: ''
         }
         const USerStub = sinon.stub(User, "findOne").resolves({
             save: sinon.stub().returns(Promise.resolve(user)),
