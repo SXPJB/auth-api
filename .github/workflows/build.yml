@@ -1,10 +1,32 @@
-name: Build Project for development
+name: Check and Build Project
 on:
   pull_request:
     branches:
       - master
+      - dev
+env:
+  TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
 jobs:
+    avoid_redundancy:
+      runs-on: ubuntu-20.04
+      steps:
+        - name: Cancel Previous Redundant Builds
+          uses: styfle/cancel-workflow-action@0.11.0
+          with:
+            access_token: ${{ github.token }}
+    test:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - name: Use Node.js 16.16.0
+          uses: actions/setup-node@v3
+          with:
+            node-version: 16.16.0
+            cache: 'npm'
+        - run: npm ci
+        - run: npm run test:coverage
     build:
+      needs: [ test ]
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3

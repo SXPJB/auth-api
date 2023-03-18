@@ -37,7 +37,7 @@ export class Person extends BaseEntity {
     @JoinColumn({referencedColumnName: "id", name: "id_gender"})
     gender: Catalog
     @Column()
-    active: string
+    active: boolean
     @CreateDateColumn({name: 'created_at'})
     createdAt: Date
     @UpdateDateColumn({name: 'updated_at'})
