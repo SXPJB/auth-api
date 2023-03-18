@@ -4,6 +4,8 @@ on:
     branches:
       - master
       - dev
+env:
+  TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
 jobs:
     avoid_redundancy:
       runs-on: ubuntu-20.04
