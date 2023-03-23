@@ -1,0 +1,8 @@
+coverage
+dist
+node_modules
+Dockerfile
+local.Dockerfile
+docker-compose.yml
+boostrap.sh
+teardown.sh
