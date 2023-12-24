@@ -1,6 +1,5 @@
 import sinon from 'sinon'
 import {loginSystem} from "../authorization.endpoint";
-import {login} from "../../../services/authorization/authorization.service";
 import * as authorizationService from "../../../services/authorization/authorization.service";
 import {IUser} from "../../../types";
 

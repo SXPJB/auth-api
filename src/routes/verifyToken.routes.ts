@@ -8,7 +8,7 @@ import {TOKEN_SECRET} from "../constants/constants";
  * @function verifyToken
  * @param {Request} req - The request object
  * @param {Response} res - The response object
- * @returns {Response} - The response object
+ * @param next
  * **/
 const verifyToken = (req:Request, res:Response, next:NextFunction) => {
     const token = req.header('auth-token');

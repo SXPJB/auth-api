@@ -3,14 +3,14 @@ import * as jwt from 'jsonwebtoken';
 import {User} from "../../entities/User";
 import {sendEmail} from "../mail/mail.service";
 import {TOKEN_SECRET} from "../../constants/constants";
-import { encryptPassword, generateConfirmationCode} from "../../constants/utils";
+import {encryptPassword, generateConfirmationCode} from "../../constants/utils";
 import {IUser} from "../../types";
 
 /**
  * This service is responsible for authenticating the user creating a JWT token with the user information
- * @param username: string
- * @param password: string
  * @returns {Promise<IUser>} - The user with the token
+ * @param username
+ * @param password
  * **/
 export const login = async (username: string, password: string):Promise<IUser> => {
     try {
@@ -26,8 +26,7 @@ export const login = async (username: string, password: string):Promise<IUser> =
             throw new Error("User not confirmed")
         }
         // Create a JWT token with the user information and the secret key with expiration time of 1 hour
-        const token = jwt.sign({name: user.username, id: user.id}, TOKEN_SECRET, {expiresIn: '1h'})
-        user.token = token
+        user.token = jwt.sign({name: user.username, id: user.id}, TOKEN_SECRET, {expiresIn: '1h'})
         return await user.save()
     } catch (e:any) {
         throw new Error("Error logging in: " + e.message)
@@ -36,12 +35,12 @@ export const login = async (username: string, password: string):Promise<IUser> =
 
 /**
  * This service is responsible for registering a new user and verifying if the user is confirmed
- * @param newUser: IUser
  * @returns {Promise<IUser>} - The user created
+ * @param newUser
  * **/
 export const registerUser = async (newUser: IUser):Promise<IUser> => {
     try {
-        const user: User = await User.create({
+        const user: User = User.create({
             person: {
                 firstName: newUser.person.firstName,
                 lastName: newUser.person.lastName,
@@ -63,9 +62,9 @@ export const registerUser = async (newUser: IUser):Promise<IUser> => {
 
 /**
  * Verify if the user is confirmed using the confirmation code
- * @param userId: number
- * @param confirmationCode: string
  * @returns {Promise<void>}
+ * @param userId
+ * @param confirmationCode
  * **/
 export const verifyUser = async (userId: number, confirmationCode: string):Promise<void> => {
     try {
@@ -94,7 +93,7 @@ export const verifyUser = async (userId: number, confirmationCode: string):Promi
 
 /**
  * Send email to user with confirmation code
- * @param user: User
+ * @param user
  * **/
 const sendConfirmationEmail = async (user: User):Promise<void> => {
     try {
