@@ -8,4 +8,4 @@ export const DB_PASSWORD = process.env.DB_PASSWORD
 export const DB_NAME = process.env.DB_NAME
 export const EMAIL = process.env.SMTP_TO_EMAIL
 export const EMAIL_PASSWORD = process.env.SMTP_PASSWORD
-export const TOKEN_SECRET = process.env.TOKEN_SECRET || ''
+export const TOKEN_SECRET = process.env.TOKEN_SECRET || 'default_secret'
