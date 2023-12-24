@@ -9,7 +9,7 @@ import {IUser} from "../../types";
  * @param {Response} res - The response object
  * @returns {Promise<Response>} - The response object with the user registered
  * **/
-export const loginSystem = async (req: Request, res: Response) => {
+export const loginSystem = async (req: Request, res: Response): Promise<Response> => {
     try {
         const {username, password} = req.body
         if (!username || !password) {
@@ -40,7 +40,7 @@ export const loginSystem = async (req: Request, res: Response) => {
  * @param {Response} res - The response object
  * @returns {Promise<Response>} - The response object with the user registered
  * **/
-export const register = async (req: Request, res: Response) => {
+export const register = async (req: Request, res: Response): Promise<Response> => {
     let user: IUser | null = null
     try {
         user = await registerUser(req.body)
@@ -64,7 +64,7 @@ export const register = async (req: Request, res: Response) => {
  * @param {Response} res - The response object
  * @returns {Promise<Response>} - The response object with the user verified
  * **/
-export const verify = async (req: Request, res: Response) => {
+export const verify = async (req: Request, res: Response): Promise<Response> => {
     try {
         const {userId, confirmationCode} = req.params
         if (!userId || !confirmationCode) {
