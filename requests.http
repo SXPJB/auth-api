@@ -26,3 +26,10 @@ Content-Type: application/json
   "username": "asdasd",
   "password": "12345"
 }
+
+### test
+GET http://localhost:8080/test/unprotected
+
+### test protected
+GET http://localhost:8080/test/protected
+authorization: Bearer <token>
