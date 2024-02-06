@@ -1,12 +1,11 @@
 import * as bcrypt from "bcrypt";
-import {User} from "../entities/User";
 
 /**
  * This function encrypts the password using bcrypt library
- * @param password: string
  * @returns {Promise<string>} - The encrypted password
+ * @param password
  * **/
-export const encryptPassword = async (password: string) => {
+export const encryptPassword = async (password: string): Promise<string> => {
     const salt = await bcrypt.genSalt(10);
     return await bcrypt.hash(password, salt);
 }
@@ -15,6 +14,6 @@ export const encryptPassword = async (password: string) => {
  * Generate confirmation code
  * @returns {string} - The confirmation code
  */
-export const generateConfirmationCode = () => {
+export const generateConfirmationCode = (): string => {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 }

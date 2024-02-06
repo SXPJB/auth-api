@@ -2,7 +2,8 @@ import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import authorizationRoutes from "./routes/authorization.routes"
-import healthcheck from "./endpoints/health/healthcheck.endpoint";
+import healthcheck from "./endpoints/health/healthcheck.endpoint"
+import testRoutes from "./routes/testroute"
 
 /**
  * Application configuration for routes and middlewares
@@ -22,8 +23,8 @@ app.use(cors())
 app.use(express.json())
 
 //routes
-app.use('/auth',authorizationRoutes)
-app.use(healthcheck)
-
+app.use('/healthcheck',healthcheck)
+app.use('/auth', authorizationRoutes)
+app.use("/test", testRoutes)
 
 export default app
