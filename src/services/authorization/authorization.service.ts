@@ -26,7 +26,7 @@ export const login = async (username: string, password: string):Promise<IUser> =
             throw new Error("User not confirmed")
         }
         // Create a JWT token with the user information and the secret key with expiration time of 1 hour
-        user.token = jwt.sign({name: user.username, id: user.id}, TOKEN_SECRET, {expiresIn: '1h'})
+        user.token = jwt.sign({name: user.username, id: user.id}, TOKEN_SECRET, {expiresIn: '2m'})
         return await user.save()
     } catch (e:any) {
         throw new Error("Error logging in: " + e.message)
