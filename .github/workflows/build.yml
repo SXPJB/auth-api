@@ -11,17 +11,17 @@ jobs:
       runs-on: ubuntu-20.04
       steps:
         - name: Cancel Previous Redundant Builds
-          uses: styfle/cancel-workflow-action@0.11.0
+          uses: styfle/cancel-workflow-action@0.12.1
           with:
             access_token: ${{ github.token }}
     test:
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v3
-        - name: Use Node.js 16.16.0
+        - uses: actions/checkout@v4.1.1
+        - name: Use Node.js lts
           uses: actions/setup-node@v3
           with:
-            node-version: 16.16.0
+            node-version: 'lts/*'
             cache: 'npm'
         - run: npm ci
         - run: npm run test:coverage
@@ -30,10 +30,10 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3
-        - name: Use Node.js 16.16.0
+        - name: Use Node.js lts
           uses: actions/setup-node@v3
           with:
-            node-version: 16.16.0
+            node-version: 'lts/*'
             cache: 'npm'
         - run: npm ci
         - run: npm run build
