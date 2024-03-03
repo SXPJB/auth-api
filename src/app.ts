@@ -16,15 +16,26 @@ import testRoutes from './routes/testroute';
  * @requires healthcheck
  * **/
 
-const app = express();
+class Boostrap {
+  public app: express.Application;
 
-app.use(morgan('dev'));
-app.use(cors());
-app.use(express.json());
+  constructor() {
+    this.app = express();
+    this.config();
+    this.routes();
+  }
 
-//routes
-app.use('/healthcheck', healthcheck);
-app.use('/auth', authorizationRoutes);
-app.use('/test', testRoutes);
+  private config(): void {
+    this.app.use(morgan('dev'));
+    this.app.use(express.json());
+    this.app.use(cors());
+  }
 
-export default app;
+  private routes(): void {
+    this.app.use('/authorization', authorizationRoutes);
+    this.app.use('/healthcheck', healthcheck);
+    this.app.use('/test', testRoutes);
+  }
+}
+
+export default new Boostrap().app;
