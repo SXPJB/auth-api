@@ -7,11 +7,11 @@ import {Request, Response} from 'express';
  * @returns {Promise<Response>} - The response object with the status of the service
  * **/
 const healthcheck = async (req: Request, res: Response) => {
-    try {
-        return res.status(200).send({status: 'OK'});
-    } catch (e) {
-        return res.status(500).send({status: 'ERROR'});
-    }
-}
+  try {
+    return res.status(200).send({status: 'OK'});
+  } catch (e) {
+    return res.status(500).send({status: 'ERROR'});
+  }
+};
 
 export default healthcheck;

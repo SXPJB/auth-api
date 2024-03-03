@@ -1,5 +1,9 @@
-import {Router} from "express";
-import {loginSystem, register, verify} from "../endpoints/authorization/authorization.endpoint";
+import { Router } from 'express';
+import {
+  loginSystem,
+  register,
+  verify,
+} from '../endpoints/authorization/authorization.endpoint';
 
 /**
  *
@@ -12,8 +16,8 @@ import {loginSystem, register, verify} from "../endpoints/authorization/authoriz
  **/
 const router = Router();
 
-router.post('/login', loginSystem)
-router.post('/register', register)
-router.get('/verify/:userId/:confirmationCode', verify)
+router.post('/login', loginSystem);
+router.post('/register', register);
+router.get('/verify/:userId/:confirmationCode', verify);
 
-export default router
+export default router;

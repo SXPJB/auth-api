@@ -1,15 +1,14 @@
 import {
-    BaseEntity,
-    Column,
-    CreateDateColumn,
-    Entity,
-    JoinColumn,
-    ManyToOne,
-    PrimaryGeneratedColumn,
-    UpdateDateColumn
-} from "typeorm";
-import {Person} from "./Person";
-
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { Person } from './Person';
 
 /**
  * This class represents the user entity of the application, and it's used to map the user table in the database
@@ -29,27 +28,27 @@ import {Person} from "./Person";
  * **/
 @Entity('user')
 export class User extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number
-    @ManyToOne(() => Person, person => person.id, {eager: true})
-    @JoinColumn({referencedColumnName: "id", name: "id_person"})
-    person: Person
-    @Column()
-    username: string
-    @Column()
-    password: string
-    @Column()
-    token: string
-    @Column({name: 'is_confirmed'})
-    isConfirmed: boolean
-    @Column({name: 'confirmation_code'})
-    confirmationCode: string
-    @Column({name: 'confirmation_code_expires'})
-    confirmationCodeExpires: Date
-    @Column()
-    active: boolean
-    @CreateDateColumn({name: 'created_at'})
-    createdAt: Date
-    @UpdateDateColumn({name: 'updated_at'})
-    updatedAt: Date
+  @PrimaryGeneratedColumn()
+  id: number;
+  @ManyToOne(() => Person, (person) => person.id, { eager: true })
+  @JoinColumn({ referencedColumnName: 'id', name: 'id_person' })
+  person: Person;
+  @Column()
+  username: string;
+  @Column()
+  password: string;
+  @Column()
+  token: string;
+  @Column({ name: 'is_confirmed' })
+  isConfirmed: boolean;
+  @Column({ name: 'confirmation_code' })
+  confirmationCode: string;
+  @Column({ name: 'confirmation_code_expires' })
+  confirmationCodeExpires: Date;
+  @Column()
+  active: boolean;
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
 }
