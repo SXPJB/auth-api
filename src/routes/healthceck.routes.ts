@@ -1,5 +1,5 @@
-import {Router} from "express";
-import healthcheckEndpoint from "../endpoints/health/healthcheck.endpoint";
+import { Router } from 'express';
+import healthcheckEndpoint from '../endpoints/health/healthcheck.endpoint';
 
 /**
  * Healthcheck routes
@@ -10,6 +10,6 @@ import healthcheckEndpoint from "../endpoints/health/healthcheck.endpoint";
 
 const router = Router();
 
-router.get('/healthcheck',healthcheckEndpoint)
+router.get('/healthcheck', healthcheckEndpoint);
 
 export default router;
