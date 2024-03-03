@@ -1,14 +1,14 @@
 import {
-    BaseEntity,
-    Column,
-    CreateDateColumn,
-    Entity,
-    JoinColumn,
-    ManyToOne,
-    PrimaryGeneratedColumn,
-    UpdateDateColumn
-} from "typeorm";
-import {Catalog} from "./Catalog";
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { Catalog } from './Catalog';
 
 /**
  * This class represents a Person entity in the database, and it's used to create the table in the database.
@@ -25,21 +25,24 @@ import {Catalog} from "./Catalog";
  * **/
 @Entity('person')
 export class Person extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number
-    @Column({name: 'first_name'})
-    firstName: string
-    @Column({name: 'last_name'})
-    lastName: string
-    @Column()
-    email: string
-    @ManyToOne(() => Catalog, catalog => catalog.id, {cascade: true, eager: true})
-    @JoinColumn({referencedColumnName: "id", name: "id_gender"})
-    gender: Catalog
-    @Column()
-    active: boolean
-    @CreateDateColumn({name: 'created_at'})
-    createdAt: Date
-    @UpdateDateColumn({name: 'updated_at'})
-    updatedAt: Date
+  @PrimaryGeneratedColumn()
+  id: number;
+  @Column({ name: 'first_name' })
+  firstName: string;
+  @Column({ name: 'last_name' })
+  lastName: string;
+  @Column()
+  email: string;
+  @ManyToOne(() => Catalog, (catalog) => catalog.id, {
+    cascade: true,
+    eager: true,
+  })
+  @JoinColumn({ referencedColumnName: 'id', name: 'id_gender' })
+  gender: Catalog;
+  @Column()
+  active: boolean;
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
 }

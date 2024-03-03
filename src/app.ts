@@ -1,9 +1,9 @@
-import express from 'express'
-import morgan from 'morgan'
-import cors from 'cors'
-import authorizationRoutes from "./routes/authorization.routes"
-import healthcheck from "./endpoints/health/healthcheck.endpoint"
-import testRoutes from "./routes/testroute"
+import express from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
+import authorizationRoutes from './routes/authorization.routes';
+import healthcheck from './endpoints/health/healthcheck.endpoint';
+import testRoutes from './routes/testroute';
 
 /**
  * Application configuration for routes and middlewares
@@ -16,15 +16,15 @@ import testRoutes from "./routes/testroute"
  * @requires healthcheck
  * **/
 
-const app = express()
+const app = express();
 
-app.use(morgan('dev'))
-app.use(cors())
-app.use(express.json())
+app.use(morgan('dev'));
+app.use(cors());
+app.use(express.json());
 
 //routes
-app.use('/healthcheck',healthcheck)
-app.use('/auth', authorizationRoutes)
-app.use("/test", testRoutes)
+app.use('/healthcheck', healthcheck);
+app.use('/auth', authorizationRoutes);
+app.use('/test', testRoutes);
 
-export default app
+export default app;
